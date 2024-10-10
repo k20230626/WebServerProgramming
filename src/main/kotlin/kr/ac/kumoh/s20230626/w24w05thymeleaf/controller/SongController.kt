@@ -11,9 +11,7 @@ class SongController(val songService: SongService) {
     @GetMapping("/song/random")
     fun getRandomSong(model: Model): String {
         val song = songService.randomSong()
-        model.addAttribute("songTitle",song.title)
-        model.addAttribute("songArtist",song.artist)
-        model.addAttribute("songAlbum",song.album)
+        model.addAttribute("song",song)
         return "random"
     }
 }
