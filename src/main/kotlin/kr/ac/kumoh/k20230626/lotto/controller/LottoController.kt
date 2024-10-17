@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping
 class LottoController(val lottoService: LottoService) {
     @GetMapping("/lotto/numbers")
     fun fetchLottoNumbers(model: Model): String {
-        model.addAttribute("lottoNumbers", lottoService.fetchLottoNumbers())
+        model.addAttribute("lottoNumbers", lottoService.fetchLuckyNumber())
         return "lotto"
     }
 }
