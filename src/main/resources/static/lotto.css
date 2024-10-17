@@ -1,0 +1,16 @@
+h1 {
+    color: aqua;
+}
+
+span {
+    padding: 10rem;
+    border-radius: 50%;
+    background-color: pink;
+    margin: 1rem;
+    &:last-child {
+        &:before {
+            content: "+";
+            color:  black;
+        }
+    }
+}
