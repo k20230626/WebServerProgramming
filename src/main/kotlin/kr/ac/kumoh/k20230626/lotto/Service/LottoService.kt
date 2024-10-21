@@ -6,12 +6,15 @@ import kotlin.random.Random
 
 @Service
 class LottoService(val service: LottoRepository) {
-    fun fetchLuckyNumber(): Array<Int> {
-        val numbers = arrayOf(0, 0, 0, 0, 0, 0)
+    fun fetchLuckyNumber(): MutableSet<Int> {
+        val numbers = mutableSetOf(0)
+        val random = Random
+        while(numbers.size < 6) {
+            numbers.add(Random.nextInt(1,46))
 
-        for(i in numbers.indices){
-            numbers[i] = Random.nextInt(45) + 1
         }
+
+
         return numbers
     }
 }
