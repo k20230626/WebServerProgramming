@@ -5,6 +5,4 @@ import org.springframework.data.mongodb.repository.MongoRepository
 
 interface HobbyRepository: MongoRepository<Hobby,String> {
     fun findHobbyByTitle(title: String): List<Hobby>
-    fun deleteHobbyByTitle(title: String): Boolean
-    fun removeAllByIdNot(id: String)
 }

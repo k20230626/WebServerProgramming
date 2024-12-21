@@ -17,13 +17,13 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("api/hobby")
 @CrossOrigin(origins = ["http://localhost:5173","https://webserver.njoys.me"])
 class HobbyController(val service: HobbyService){
-    @GetMapping("/")
+    @GetMapping
     fun getHobby() = service.getAllHobbies()
 
     @GetMapping("/{title}")
     fun getHobbyByTitle(@PathVariable title: String) = service.getHobbyByTitle(title)
 
-    @PostMapping("/")
+    @PostMapping
     fun addHobby(@RequestBody hobby: Hobby) = service.addHobby(hobby)
 
     @PutMapping("/{id}")

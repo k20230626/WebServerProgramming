@@ -12,8 +12,11 @@ class HobbyService(val repository: HobbyRepository) {
 
     fun getHobbyByTitle(title: String): Hobby = repository.findHobbyByTitle(title).first()
 
-    fun deleteHobbyByTitle(title: String): Boolean = repository.deleteHobbyByTitle(title)
-
+    fun deleteHobbyByTitle(title: String): Boolean {
+        val hobby = repository.findHobbyByTitle(title).firstOrNull() ?: return false
+        repository.delete(hobby)
+        return true
+    }
     fun deleteHobby(id: String): Boolean {
         return if (repository.existsById(id)) {
             repository.deleteById(id)
@@ -49,7 +52,7 @@ class HobbyService(val repository: HobbyRepository) {
                     <br/>
                     <span>요즘에는 애니메이션보단 만화를 선호하고 있다.</span>
                 """.trimIndent(),
-                "https://i.namu.wiki/i/7ebO-eqvlXty-WxFM_DlJZD0EOoPmduukOG6mWJkArYUm0VY5xj8aATMsxWX9CaQBOCgbJZ_Ne-teMoXQgiA-3fo61uWo4iGmSuA56RsJW7Kcnj1L7Opj2gfkXceQEBlcQwfzpBDbLs0d0mBcDWXOQ.webp",
+                "https://i.namu.wiki/i/NAuNLwDW2H9PgkuLoYVDZ5zfTY797jq7EfaQAvPR3bTy0hEsnHfJQo1YNtyrJZYUauyC0uC33kxZhTTJlPSa358HaeVwjbjgBiJS4JqJsOkq93yI5GrhmVNVdG8Y5F5IUYoma-6TExarrEufgufc8Q.webp",
                 "https://laftel.net/item/39985"
             ),
             Hobby(
@@ -64,7 +67,7 @@ class HobbyService(val repository: HobbyRepository) {
                     <br/>
                     <span>현재는 J⇔M과 숨은 실력자가 되고 싶어서!를 가장 재밌게 보고 있다.</span>
                 """.trimIndent(),
-                "https://i.namu.wiki/i/SnszjXShYXSYQpR-DHEra0vdhaWFLTjuvPfHVXcTEPgg1c8wBuhqDMzaREvMZbTS-Cih516stAZE1aLQlm21JyxlMG6rOp5_AuueOAbovxvg6MXaI4CmxI_nV4wAjw_0UFdk5nImvPlGthfypNXApg.webp",
+                "https://i.namu.wiki/i/VxAOrnFEujF0zIO_P6sxCi-408xWZajoy3JLsOwG_ceqksa2IaKQi6DYilgH_WDypfdXJNQuJJMR5SOFk_SjjWcF9GuqmYlgwpeiGV8d4H2Xr5zWEv9ogdx_pQNnGPAJrrLQVMmI4iOFCAmLwEQPHQ.webp",
                 "https://namu.wiki/w/%EC%9E%A5%EC%86%A1%EC%9D%98%20%ED%94%84%EB%A6%AC%EB%A0%8C"
             ),
             Hobby(
@@ -81,8 +84,8 @@ class HobbyService(val repository: HobbyRepository) {
                 "https://maplestory.nexon.com"
             )
         )
-
-        repository.removeAllByIdNot("")
+        //deleteAll로 대체
+        repository.deleteAll()
         repository.saveAll(hobby)
 
         return hobby
